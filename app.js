@@ -72,7 +72,8 @@ async function handleSearch(city) {
         updateUI(currentData, forecastData);
         loadSearchHistory(); 
     } catch (error) {
-        alert('City not found. Please try again.');
+        console.error(error);
+        alert(`Search Error: ${error.message || 'Check your database connection and API key.'}`);
     }
 }
 

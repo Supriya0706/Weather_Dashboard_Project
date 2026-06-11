@@ -8,15 +8,18 @@ $user = getenv('DB_USER') ?: 'root';
 $pass = getenv('DB_PASS') ?: '';
 $dbname = getenv('DB_NAME') ?: 'weather_db';
 
-$conn = new mysqli($host, $user, $pass);
+$conn = new mysqli($host, $user, $pass, $dbname);
 
 if ($conn->connect_error) {
-    die(json_encode(["error" => "Connection failed: " . $conn->connect_error]));
+    // If connection with dbname fails, try without it to see if we need to create it (local setup)
+    $conn = new mysqli($host, $user, $pass);
+    if (!$conn->connect_error) {
+        $conn->query("CREATE DATABASE IF NOT EXISTS $dbname");
+        $conn->select_db($dbname);
+    } else {
+        die(json_encode(["error" => "Database connection failed: " . $conn->connect_error]));
+    }
 }
-
-// Ensure database exists
-$conn->query("CREATE DATABASE IF NOT EXISTS $dbname");
-$conn->select_db($dbname);
 
 // Ensure table exists
 $table_sql = "CREATE TABLE IF NOT EXISTS weather_history (
