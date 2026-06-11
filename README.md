@@ -1,38 +1,42 @@
 # SkyCast | Smart Weather Decision Assistant
 
-SkyCast is a modern, premium weather application that goes beyond simple temperature reports. It uses real-time data to provide a "Weather Score" and personalized recommendations for activities, travel, and health.
+SkyCast is a modern, premium full-stack weather application that provides actionable recommendations and decision support based on weather conditions. It features a hybrid architecture using PHP for the backend, Python for advanced analytics, and MySQL for persistent search history.
 
 ## 🌟 Features
 
-- **Real-Time Weather**: Current conditions for any city globally.
-- **Smart Decision Assistant**: Calculates a 0-100 score based on temperature, humidity, wind, and rain.
-- **Personalized Recommendations**: Business rules for activities, travel advisories, and health tips.
-- **5-Day Forecast**: Visualized with a sleek Chart.js line graph and daily breakdown.
-- **Premium UI**: Glassmorphic design, smooth animations, and a responsive Bootstrap 5 layout.
-- **Advanced Features**: 
-  - Dark/Light Mode toggle.
-  - Browser Geolocation support.
-  - Persistent search history.
-  - Mobile-responsive design.
+- **Real-Time Weather**: Global weather conditions powered by OpenWeatherMap API.
+- **Smart Decision Assistant**: Calculates a "Weather Score" (0-100) based on environmental data.
+- **Advanced Recommendations**: Personalized suggestions for activities, travel, and health.
+- **Python Analytics Engine**: Integrated Python script for advanced climatic insight generation.
+- **5-Day Forecast & Trends**: Interactive charts using **Chart.js**.
+- **Full-Stack Persistence**: Search history and scores stored in **MySQL**.
+- **Premium UI**: Glassmorphic design, smooth animations, and responsive Bootstrap 5 layout.
+- **Deployment Ready**: Fully containerized with **Docker** for easy cloud hosting.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: HTML5, Vanilla CSS3, Bootstrap 5.
-- **Logic**: JavaScript (ES6+), Chart.js.
+- **Frontend**: HTML5, CSS3 (Glassmorphism), JavaScript (ES6), Bootstrap 5, Chart.js.
+- **Backend**: **PHP** (Proxy API & Database Bridge).
+- **Analytics**: **Python** (Advanced Recommendation Engine).
+- **Database**: **MySQL** (History Tracking).
+- **DevOps**: **Docker**, Docker Compose.
 - **APIs**: OpenWeatherMap API, Browser Geolocation API.
-- **Storage**: LocalStorage for theme and history.
 
-## 🚀 Getting Started
+## 🚀 Installation & Local Setup
 
-1. Clone the repository.
-2. Open `index.html` in any modern web browser.
-3. (Optional) Replace the `API_KEY` in `app.js` with your own OpenWeatherMap key.
+### Using XAMPP / Manual PHP
+1. Clone the repository to your local web server directory.
+2. Ensure **PHP**, **Python**, and **MySQL** are installed.
+3. Configure your database credentials in `api/db.php`.
+4. Run `php -S localhost:8000` and open it in your browser.
 
-## 📊 Business Logic Examples
+### Using Docker (Recommended)
+1. Run `docker-compose up -d`.
+2. Access the app at `http://localhost:8000`.
 
-- **Weather Score**: Deducts points for extreme temperatures, high humidity, strong winds, or precipitation.
-- **Travel Advisory**: Alerts users of storms or heavy rain that might impact transit.
-- **Health Tips**: Suggests hydration in high humidity or layers in the cold.
+## ☁️ Deployment
+
+The project is optimized for deployment on platforms like **Render** or **Railway** using the included `Dockerfile` and support for environment variables (`DB_HOST`, `DB_USER`, `DB_PASS`, `DB_NAME`, `DB_PORT`).
 
 ---
-Built with ❤️ by SkyCast Team
+Built with ❤️ for the Modern Web
