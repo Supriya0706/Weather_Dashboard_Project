@@ -7,8 +7,15 @@ $host = getenv('DB_HOST') ?: 'localhost';
 $user = getenv('DB_USER') ?: 'root';
 $pass = getenv('DB_PASS') ?: '';
 $dbname = getenv('DB_NAME') ?: 'weather_db';
+$port = getenv('DB_PORT') ?: 3306;
 
-$conn = new mysqli($host, $user, $pass, $dbname);
+// Handle host:port format if provided in DB_HOST
+if (strpos($host, ':') !== false) {
+    list($host, $p) = explode(':', $host);
+    $port = $p;
+}
+
+$conn = new mysqli($host, $user, $pass, $dbname, $port);
 
 if ($conn->connect_error) {
     // If connection with dbname fails, try without it to see if we need to create it (local setup)
